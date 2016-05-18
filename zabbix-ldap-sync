@@ -117,13 +117,13 @@ class LDAPConn(object):
                                     scope=ldap.SCOPE_SUBTREE,
                                     filterstr=filter,
                                     attrlist=attrlist)
-
-                    dn, users = uid.pop()
-                    username = users.get('sAMAccountName')
-                    if lowercase:
-                        final_listing.append(str(username)[2 : -2].lower())
-                    else:
-                        final_listing.append(str(username)[2 : -2])
+		    if uid:
+                        dn, users = uid.pop()
+                        username = users.get('sAMAccountName')
+                        if lowercase:
+                            final_listing.append(str(username)[2 : -2].lower())
+                        else:
+                            final_listing.append(str(username)[2 : -2])
 
             return final_listing
 
