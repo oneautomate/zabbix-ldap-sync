@@ -444,6 +444,7 @@ class ZabbixConn(object):
             if extra_users:
                 print '>>> Users in group %s which are not found in LDAP group:' % eachGroup
                 for eachUser in extra_users:
+                    self.conn.user.delete(self.get_user_id(eachUser))
                     print ' * %s' % eachUser
 
         ldap_conn.disconnect()
