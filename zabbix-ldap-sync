@@ -110,7 +110,7 @@ class LDAPConn(object):
                 for member in result_attrs["member"]:
 
                     attrlist = ['sAMAccountName']
-                    filter   = '(&(objectClass=person)(distinguishedName=%s))' % ldap.filter.escape_filter_chars(member)
+                    filter   = '(&(objectClass=person)(distinguishedName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))' % ldap.filter.escape_filter_chars(member)
 
                     # get the actual LDAP object for each group member
                     uid = self.conn.search_s(base=self.base,
